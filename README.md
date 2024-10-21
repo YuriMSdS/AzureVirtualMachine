@@ -1,6 +1,6 @@
 # Criando Máquinas Virtuais na Azure
 
-Este documento oferece uma visão geral sobre como criar máquinas virtuais na plataforma da própria Azure, e também  usando Terraform, uma ferramenta de automação de infraestrutura que permite gerenciar a infraestrutura como código (IaC).
+Este documento oferece uma visão geral sobre como criar máquinas virtuais na plataforma da Azure, usando também o Terraform, uma ferramenta de automação de infraestrutura que permite gerenciar a infraestrutura como código (IaC).
 
 ## O que é uma Máquina Virtual?
 
@@ -12,9 +12,10 @@ As Máquinas Virtuais (VMs) são instâncias de servidores baseados em nuvem, qu
 ## Requisitos para Criar VMs na Azure
 
 Antes de começar, certifique-se de:
-1. Ter uma **conta na Azure** (é possível utilizar uma conta gratuita!).
+- Ter uma **conta na Azure** (é possível utilizar uma conta gratuita).
 
 # Estrutura do Projeto
+
 ```
 AzureVirtualMachine/
 │
@@ -23,6 +24,8 @@ AzureVirtualMachine/
 │
 └── README.md
 ```
+
+
 ## 1. **Criando uma Máquina Virtual pelo Portal da Azure**
 
 ### Passo 1: Acesse o Portal da Azure
@@ -48,6 +51,7 @@ AzureVirtualMachine/
 - **Usuário**: Escolha um nome de usuário para acessar a VM (por exemplo, `azureuser`).
 - **Autenticação**: Opte por utilizar **senha** ou **chave SSH**. Para maior segurança, é recomendável usar chave SSH.
   - Se escolher chave SSH, cole a chave pública no campo apropriado.
+  - Link de ajuda para configurar o SSH: [link].
 
 ### Passo 5: Configuração de Rede
 
@@ -65,19 +69,31 @@ AzureVirtualMachine/
 - Clique em **Revisar + Criar** para validar as configurações.
 - Clique em **Criar** para iniciar a criação da VM. A criação pode levar alguns minutos.
 
+## 2. **Criando uma VM pelo Terraform**
 
-## 2. **Criando uma VM pelo terraform**
+### Requisitos necessários:
 
-# Requisitos necessários:
-Para criar devidamente sua VM, certifique-se dê:
+Para criar devidamente sua VM, certifique-se de:
 1. Instalar o **Terraform** na sua máquina local.
 2. Configurar a **Azure CLI** para autenticação.
 
 ### Instalação da Azure CLI
-Caso não tenha instalado a Azure CLI, utilize o seguinte comando para instalar:
 
+Caso não tenha instalado a Azure CLI, utilize o seguinte comando:
+
+**Para rodar no Windows:**
+```bash
+winget install Microsoft.AzureCLI
+```
+
+**Para rodar no Linux:**
 ```bash
 curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+```
+
+**Para rodar no MacOS:**
+```bash
+brew update && brew install azure-cli
 ```
 
 Em seguida faça o login na Azure utilizando:
@@ -85,11 +101,12 @@ Em seguida faça o login na Azure utilizando:
 ```bash
 az login
 ```
+Após executar `az login`, uma janela será aberta na Azure onde você deverá inserir suas credenciais. Caso você esteja usando o terminal, será solicitado que você insira um código para autenticação.
 
 ### Criação e execução do Terraform
 Após a autenticação realizada anteriormente realize os seguintes passos:
-1. Criar um arquivo main.tf (como este presente na pasta *infra*).
-2. Iniciar o terraform
+1. Criar um arquivo `main.tf` (como este presente na pasta `infra`).
+2. Iniciar o Terraform
 3. Planejar a infra (gera um plano de execução, afim de verificar o que será criado)
 4. Aplicar a configuração (neste passo, cria a VM e seus recursos)
 
