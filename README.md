@@ -15,14 +15,14 @@ Antes de começar, certifique-se de:
 1. Ter uma **conta na Azure** (é possível utilizar uma conta gratuita!).
 
 # Estrutura do Projeto
-
+```
 AzureVirtualMachine/
 │
 ├──Infra/
 │    └── main.tf
 │
 └── README.md
-
+```
 ## 1. **Criando uma Máquina Virtual pelo Portal da Azure**
 
 ### Passo 1: Acesse o Portal da Azure
